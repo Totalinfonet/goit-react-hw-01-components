@@ -1,35 +1,54 @@
-export const Profile = ({
-  username,
-  tag,
-  location,
-  avatar,
-  followers,
-  views,
-  likes,
-}) => {
-  return (
-    <div className="profile">
-      <div className="description">
-        <img src={avatar} alt="User avatar" className="avatar" />
-        <p className="name">{username}</p>
-        <p className="tag">@{tag}</p>
-        <p className="location">{location}</p>
-      </div>
+import { PropTypes } from 'prop-types';
+import {
+  UserCard,
+  UserDescription,
+  UserImg,
+  UserName,
+  UserTag,
+  UserLocation,
+  UserStatsList,
+  UserStatsItem,
+  UserStatsLabel,
+  UserStatsValue,
+} from './Profile.styled';
 
-      <ul className="stats">
-        <li>
-          <span className="label">Followers</span>
-          <span className="quantity">{followers}</span>
-        </li>
-        <li>
-          <span className="label">Views</span>
-          <span className="quantity">{views}</span>
-        </li>
-        <li>
-          <span className="label">Likes</span>
-          <span className="quantity">{likes}</span>
-        </li>
-      </ul>
-    </div>
+export const Profile = ({ username, tag, location, avatar, stats }) => {
+  const { followers, views, likes } = stats;
+  return (
+    <UserCard>
+      <UserDescription>
+        <UserImg src={avatar} alt="User avatar" />
+        <UserName>{username}</UserName>
+        <UserTag>@{tag}</UserTag>
+        <UserLocation>{location}</UserLocation>
+      </UserDescription>
+
+      <UserStatsList>
+        <UserStatsItem>
+          <UserStatsLabel>Followers</UserStatsLabel>
+          <UserStatsValue>{followers}</UserStatsValue>
+        </UserStatsItem>
+        <UserStatsItem>
+          <UserStatsLabel>Views</UserStatsLabel>
+          <UserStatsValue>{views}</UserStatsValue>
+        </UserStatsItem>
+        <UserStatsItem>
+          <UserStatsLabel>Likes</UserStatsLabel>
+          <UserStatsValue>{likes}</UserStatsValue>
+        </UserStatsItem>
+      </UserStatsList>
+    </UserCard>
   );
+};
+
+Profile.propTypes = {
+  username: PropTypes.string.isRequired,
+  tag: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  stats: PropTypes.shape({
+    followers: PropTypes.number.isRequired,
+    views: PropTypes.number.isRequired,
+    likes: PropTypes.number.isRequired,
+  }).isRequired,
 };
