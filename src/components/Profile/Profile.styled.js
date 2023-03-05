@@ -4,7 +4,7 @@ export const UserCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 260px;
+  width: 340px;
   height: 340px;
   background-color: #f0f0f0;
   padding: 40px 60px;
